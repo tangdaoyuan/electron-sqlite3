@@ -1,0 +1,66 @@
+{
+  "name": "@suger-tdy/tsup-starter",
+  "version": "0.0.0",
+  "packageManager": "pnpm@7.9.0",
+  "description": "starter project for typescript (tsup)",
+  "keywords": [
+    "typescript-starter",
+    "ts-starter",
+    "tsup-starter"
+  ],
+  "license": "MIT",
+  "author": "tangdaoyuan <1197633750@qq.com> (https://github.com/tangdaoyuan/)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tangdaoyuan/tsup-starter.git"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./*": "./*"
+  },
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "test": "vitest",
+    "test:run": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "start": "tsx ./src/index.ts",
+    "play": "npm -C playground run dev",
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "prepublishOnly": "pnpm run build",
+    "release": "bumpp --tag --commit --push && pnpm publish"
+  },
+  "bugs": {
+    "url": "https://github.com/tangdaoyuan/tsup-starter/issues"
+  },
+  "homepage": "https://github.com/tangdaoyuan/tsup-starter#readme",
+  "dependencies": {
+    "picocolors": "^1.0.0"
+  },
+  "devDependencies": {
+    "@suger-tdy/eslint-config": "1.1.9",
+    "bumpp": "8.2.1",
+    "esbuild": "0.14.53",
+    "eslint": "8.21.0",
+    "tsup": "^6.2.1",
+    "tsx": "3.8.0",
+    "typescript": "4.7.4",
+    "vite": "3.0.4",
+    "vitest": "0.21.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
