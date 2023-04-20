@@ -50,15 +50,15 @@
     "picocolors": "^1.0.0"
   },
   "devDependencies": {
-    "@suger-tdy/eslint-config": "1.1.9",
-    "bumpp": "8.2.1",
-    "esbuild": "0.14.53",
-    "eslint": "8.21.0",
+    "@suger-tdy/eslint-config": "1.1.14",
+    "bumpp": "9.1.0",
+    "esbuild": "0.17.17",
+    "eslint": "8.38.0",
     "tsup": "^6.7.0",
-    "tsx": "3.8.0",
-    "typescript": "4.7.4",
-    "vite": "3.0.4",
-    "vitest": "0.21.0"
+    "tsx": "3.12.6",
+    "typescript": "5.0.4",
+    "vite": "4.3.0",
+    "vitest": "0.30.1"
   },
   "publishConfig": {
     "access": "public"
