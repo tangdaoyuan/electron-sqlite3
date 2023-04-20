@@ -1,7 +1,7 @@
 {
   "name": "@suger-tdy/tsup-starter",
   "version": "0.0.0",
-  "packageManager": "pnpm@7.9.0",
+  "packageManager": "pnpm@7.32.2",
   "description": "starter project for typescript (tsup)",
   "keywords": [
     "typescript-starter",
@@ -54,7 +54,7 @@
     "bumpp": "8.2.1",
     "esbuild": "0.14.53",
     "eslint": "8.21.0",
-    "tsup": "^6.2.1",
+    "tsup": "^6.7.0",
     "tsx": "3.8.0",
     "typescript": "4.7.4",
     "vite": "3.0.4",
