@@ -46,12 +46,20 @@
     "url": "https://github.com/tangdaoyuan/tsup-starter/issues"
   },
   "homepage": "https://github.com/tangdaoyuan/tsup-starter#readme",
+  "peerDependencies": {
+    "electron": "^23.1.1",
+    "electron-log": "5.0.0-beta.19"
+  },
   "dependencies": {
-    "picocolors": "^1.0.0"
+    "better-sqlite3": "^8.3.0",
+    "knex": "^2.4.2"
   },
   "devDependencies": {
     "@suger-tdy/eslint-config": "1.1.14",
+    "@types/better-sqlite3": "^7.6.4",
     "bumpp": "9.1.0",
+    "electron": "^23.1.1",
+    "electron-log": "5.0.0-beta.19",
     "esbuild": "0.17.17",
     "eslint": "8.38.0",
     "tsup": "^6.7.0",
