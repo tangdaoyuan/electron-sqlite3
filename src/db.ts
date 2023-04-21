@@ -1,41 +1,59 @@
 
 import path from 'path'
 import { existsSync, mkdirSync } from 'fs'
-import type { Database } from 'better-sqlite3'
 import SqliteDatabase from 'better-sqlite3'
 import Logger from 'electron-log'
 import { knex } from 'knex'
 import type { Knex } from 'knex'
 import { DB_LIST, USER_DB_DIR } from './constant'
+import type { ISqliteBuilderOption, SqliteDB } from './types'
 
-type SqliteDB = Database | null
-let sqliteDB: SqliteDB = null
-let knexInstance: Knex | null = null
+class SqliteBuilder {
+  private static instance?: SqliteBuilder
+  private sqliteDB: SqliteDB = null
+  private knexInstance: Knex | null = null
 
-export function dbPath(name: string) {
-  if (!existsSync(USER_DB_DIR))
-    mkdirSync(USER_DB_DIR, { recursive: true })
+  constructor(_options: ISqliteBuilderOption) {
+    this._init(_options)
+  }
 
-  return path.join(USER_DB_DIR, `${name}.db`)
-}
+  static getInstance(options: ISqliteBuilderOption = {
+    dbName: DB_LIST.IMAGE_LINK,
+  }) {
+    if (!this.instance)
+      this.instance = new SqliteBuilder(options)
 
-export function initDB(dbDir: string): SqliteDB {
-  const absDbPath = dbPath(dbDir)
-  sqliteDB = new SqliteDatabase(absDbPath)
-  Logger.info(`[DB] init database ${absDbPath} completed`)
+    return this.instance
+  }
 
-  return sqliteDB
-}
+  private _dbPath(name: string) {
+    if (!existsSync(USER_DB_DIR))
+      mkdirSync(USER_DB_DIR, { recursive: true })
 
-export function db(name = DB_LIST.IMAGE_LINK): SqliteDB {
-  if (!sqliteDB)
-    initDB(name)
+    return path.join(USER_DB_DIR, `${name}.db`)
+  }
 
-  return sqliteDB
-}
+  _init(opt: ISqliteBuilderOption) {
+    this.initDB(opt.dbName)
+    this.initSqlParser()
+  }
 
-export function sqlParser() {
-  if (!knexInstance) {
+  initDB(dbName: string): SqliteDB {
+    const absDbPath = this._dbPath(dbName)
+    this.sqliteDB = new SqliteDatabase(absDbPath)
+    Logger.info(`[DB] init database ${absDbPath} completed`)
+
+    return this.sqliteDB
+  }
+
+  db(name = DB_LIST.IMAGE_LINK): SqliteDB {
+    if (!this.sqliteDB)
+      this.initDB(name)
+
+    return this.sqliteDB
+  }
+
+  initSqlParser() {
     const config: Knex.Config = {
       client: 'better-sqlite3',
       connection: {
@@ -43,8 +61,23 @@ export function sqlParser() {
       },
     }
 
-    knexInstance = knex(config)
+    this.knexInstance = knex(config)
   }
 
-  return knexInstance
+  sqlParser() {
+    if (!this.knexInstance) {
+      const config: Knex.Config = {
+        client: 'better-sqlite3',
+        connection: {
+          filename: ':memory:',
+        },
+      }
+
+      this.knexInstance = knex(config)
+    }
+
+    return this.knexInstance
+  }
 }
+
+export default SqliteBuilder

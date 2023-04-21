@@ -1,1 +1,3 @@
-export default '@suger-tdy/tsup-starter'
+import SqliteBuilder from './db'
+
+export default SqliteBuilder
