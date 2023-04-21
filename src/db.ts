@@ -78,6 +78,11 @@ class SqliteBuilder {
 
     return this.knexInstance
   }
+
+  async dispose() {
+    this.sqliteDB?.close()
+    await this.knexInstance?.destroy()
+  }
 }
 
 export default SqliteBuilder

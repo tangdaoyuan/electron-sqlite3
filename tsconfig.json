@@ -20,7 +20,10 @@
       "@/*": [
         "src/*"
       ],
-      "@suger-tdy/tsup-starter/*": [
+      "@suger-tdy/electron-sqlite3": [
+        "dist"
+      ],
+      "@suger-tdy/electron-sqlite3/*": [
         "dist/*"
       ]
     }
