@@ -59,6 +59,7 @@ class SqliteBuilder {
       connection: {
         filename: ':memory:',
       },
+      useNullAsDefault: true,
     }
 
     this.knexInstance = knex(config)
