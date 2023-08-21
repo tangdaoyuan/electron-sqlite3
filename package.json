@@ -2,7 +2,7 @@
   "name": "@suger-tdy/electron-sqlite3",
   "version": "0.1.0",
   "packageManager": "pnpm@7.32.2",
-  "description": "Personal electron sqlite3 Utils",
+  "description": "Personal electron sqlite3 Utils For Electron",
   "keywords": [
     "electron-sqlite3"
   ],
@@ -27,6 +27,9 @@
     "dist",
     "*.d.ts"
   ],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "test": "vitest",
     "test:run": "vitest run",
